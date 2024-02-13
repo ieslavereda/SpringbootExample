@@ -3,10 +3,7 @@ package es.ieslavereda.springbootexample.controller;
 import es.ieslavereda.springbootexample.model.Person;
 import es.ieslavereda.springbootexample.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/person")
@@ -20,4 +17,8 @@ public class PersonController {
         personService.create(person);
     }
 
+    @GetMapping()
+    public Person getPersonByUsername(@RequestParam(value = "username") String username){
+        return personService.getUserByUsername(username);
+    }
 }

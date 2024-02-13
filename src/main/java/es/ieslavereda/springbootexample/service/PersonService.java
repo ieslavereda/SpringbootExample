@@ -14,5 +14,8 @@ public class PersonService {
     public void create(Person person){
         personRepository.save(person);
     }
+    public Person getUserByUsername(String username){
+        return personRepository.findByUsername(username).orElseThrow();
+    }
 
 }
