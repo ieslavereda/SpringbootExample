@@ -5,6 +5,8 @@ import es.ieslavereda.springbootexample.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/person")
 public class PersonController {
@@ -18,7 +20,17 @@ public class PersonController {
     }
 
     @GetMapping()
-    public Person getPersonByUsername(@RequestParam(value = "username") String username){
-        return personService.getUserByUsername(username);
+    public List<Person> getPersons() {
+        return personService.getPersons();
+    }
+
+    @DeleteMapping()
+    public void deletePerson(@RequestParam("id") Integer id){
+        personService.deletePerson(id);
+    }
+
+    @PutMapping()
+    public void update(@RequestBody Person person){
+        personService.updatePerson(person);
     }
 }

@@ -5,6 +5,8 @@ import es.ieslavereda.springbootexample.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PersonService {
 
@@ -14,8 +16,16 @@ public class PersonService {
     public void create(Person person){
         personRepository.save(person);
     }
-    public Person getUserByUsername(String username){
-        return personRepository.findByUsername(username).orElseThrow();
+
+    public List<Person> getPersons() {
+        return personRepository.findAll();
     }
 
+    public void deletePerson(int id) {
+        personRepository.deleteById(id);
+    }
+
+    public void updatePerson(Person person) {
+        personRepository.save(person);
+    }
 }
